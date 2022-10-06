@@ -39,7 +39,7 @@ const abash = {
 				var denizenList = abash.prioList[abash.currentArea];
 				console.log(denizenList);
 				if(!denizenList.includes(slainDenizen)) {
-					nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
+					//nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 					denizenList.push(slainDenizen);
 					abash.prioList[abash.currentArea] = denizenList;
 					nexusclient.variables().set("basharrrPrioList", abash.prioList);
@@ -51,8 +51,8 @@ const abash = {
 				abash.prioList[abash.currentArea] = denizenList;
 				console.log(abash.prioList);
 				nexusclient.variables().set("basharrrPrioList", abash.prioList);
-				nexusclient.display_notice("|WANGBU| New area added", "yellow");
-				nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
+				//nexusclient.display_notice("|WANGBU| New area added", "yellow");
+				//nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 			}
 
 			abash.attackThings();
