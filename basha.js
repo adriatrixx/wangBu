@@ -32,14 +32,14 @@ const abash = {
 		const denSlain = function(denizen) {
 			var slainDenizen = denizen;
 			abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-			// var prioList = nexusclient.variables().get("basharrrPrioList");
+			var prioList = nexusclient.variables().get("basharrrPrioList");
 
 			if(abash.prioList[abash.currentArea]) {
 				// Area already exists in prio list
 				var denizenList = abash.prioList[abash.currentArea];
 				console.log(denizenList);
 				if(!denizenList.includes(slainDenizen)) {
-					//nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
+					nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 					denizenList.push(slainDenizen);
 					abash.prioList[abash.currentArea] = denizenList;
 					nexusclient.variables().set("basharrrPrioList", abash.prioList);
@@ -51,8 +51,8 @@ const abash = {
 				abash.prioList[abash.currentArea] = denizenList;
 				console.log(abash.prioList);
 				nexusclient.variables().set("basharrrPrioList", abash.prioList);
-				//nexusclient.display_notice("|WANGBU| New area added", "yellow");
-				//nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
+				nexusclient.display_notice("|WANGBU| New area added", "yellow");
+				nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 			}
 
 			abash.attackThings();
@@ -82,7 +82,7 @@ const abash = {
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		var enemyList = abash.prioList[abash.currentArea];
 		var enemyFound = false;
-		// nexusclient.display_notice("enemyFound = false", "yellow");
+		nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
                    if(myClass == "Runewarden") {
                       myClass = nexusclient.datahandler().GMCP.CharStats[2];
@@ -91,30 +91,33 @@ const abash = {
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
-		switch (myClass) {
-			case "Spec: Two Handed":
-				tempPrep = "battlefury focus speed";
-				tempAttack = "slaughter";
-				break;
-			case "Red Dragon":
-				tempAttack = "gut";
-				break;
-			case "Depthswalker":
-				tempAttack = "shadow reap";
-				break;
-			case "Druid":
-				tempAttack = "maul";
-				break;
-			case "earth Elemental Lord":
-				tempAttack = "terran pulverise";
-				break;
-			case "Jester":
-				tempAttack = "bop";
-				break;
-			default:
-				tempAttack = "kill";
-				break;
-                }
+		tempPrep = "";
+		tempAttack = "tide clobber";
+		
+		//switch (myClass) {
+		//	case "Spec: Two Handed":
+		//		tempPrep = "battlefury focus speed";
+		//		tempAttack = "slaughter";
+		//		break;
+		//	case "Red Dragon":
+		//		tempAttack = "gut";
+		//		break;
+		//	case "Depthswalker":
+		//		tempAttack = "shadow reap";
+		//		break;
+		//	case "Druid":
+		//		tempAttack = "maul";
+		//		break;
+		//	case "earth Elemental Lord":
+		//		tempAttack = "terran pulverise";
+		//		break;
+		//	case "Jester":
+		//		tempAttack = "bop";
+		//		break;
+		//	default:
+		//		tempAttack = "kill";
+		//		break;
+                //}
    
   		nexusclient.variables().set("atkPrep", tempPrep);
 		nexusclient.variables().set("atkCommand", tempAttack);
