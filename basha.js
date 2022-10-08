@@ -82,7 +82,7 @@ const abash = {
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		var enemyList = abash.prioList[abash.currentArea];
 		var enemyFound = false;
-		nexusclient.display_notice("enemyFound = false", "yellow");
+		//nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
                    if(myClass == "Runewarden") {
                       myClass = nexusclient.datahandler().GMCP.CharStats[2];
