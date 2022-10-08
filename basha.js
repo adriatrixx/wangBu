@@ -127,7 +127,7 @@ const abash = {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
-						//nexusclient.display_notice("Found an enemy!", "yellow");
+						nexusclient.display_notice("Found an enemy!", "yellow");
 						nexusclient.datahandler().send_command("st " + el.id);
 					}
 				});
@@ -146,7 +146,7 @@ const abash = {
 	}, // End attackThings()
 
 	stopattackThings() {
-		// nexusclient.display_notice("Running attackThings function!", "yellow");
+		// nexusclient.display_notice("Running stopattackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		abash.prioList = nexusclient.variables().get("basharrrPrioList");
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
