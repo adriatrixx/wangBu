@@ -84,22 +84,22 @@ const abash = {
 		var enemyFound = false;
 		//nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
-		nexusclient.display_notice(myClass, "yellow");
-                   if(myClass == "Runewarden") {
-                      myClass = nexusclient.datahandler().GMCP.CharStats[2];
-                   }
+		//nexusclient.display_notice(myClass, "yellow");
+                //   if(myClass == "Runewarden") {
+                //      myClass = nexusclient.datahandler().GMCP.CharStats[2];
+                //   }
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
-		tempPrep = "";
-		tempAttack = "tide clobber";
+		//tempPrep = "";
+		//tempAttack = "tide clobber";
 		
-		//switch (myClass) {
-		//	case "Spec: Two Handed":
-		//		tempPrep = "battlefury focus speed";
-		//		tempAttack = "slaughter";
-		//		break;
+		switch (myClass) {
+			case "Tidesage":
+				tempPrep = "tide hightide";
+				tempAttack = "tide clobber";
+				break;
 		//	case "Red Dragon":
 		//		tempAttack = "gut";
 		//		break;
@@ -115,20 +115,20 @@ const abash = {
 		//	case "Jester":
 		//		tempAttack = "bop";
 		//		break;
-		//	default:
-		//		tempAttack = "kill";
-		//		break;
-                //}
+			default:
+				tempAttack = "kill";
+				break;
+                }
    
-  		nexusclient.variables().set("atkPrep", tempPrep);
-		nexusclient.variables().set("atkCommand", tempAttack);
+  		//nexusclient.variables().set("atkPrep", tempPrep);
+		//nexusclient.variables().set("atkCommand", tempAttack);
 
 		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
-						nexusclient.display_notice("Found an enemy!", "yellow");
+						//nexusclient.display_notice("Found an enemy!", "yellow");
 						nexusclient.datahandler().send_command("st " + el.id);
 					}
 				});
@@ -136,9 +136,9 @@ const abash = {
 		});
 
 		if (enemyFound == false) {
-			nexusclient.display_notice("No enemies found", "green");
-			nexusclient.datahandler().send_command("st none");
-			nexusclient.variables().set("bashing", false);
+			nexusclient.display_notice("|WANGBU| No enemies found", "green");
+			//nexusclient.datahandler().send_command("st none");
+			//nexusclient.variables().set("bashing", false);
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempPrep);
@@ -154,16 +154,12 @@ const abash = {
 		var enemyList = abash.prioList[abash.currentArea];
 		var enemyFound = false;
 		// nexusclient.display_notice("enemyFound = false", "yellow");
-		var myClass = nexusclient.datahandler().GMCP.Status.class;
-                   if(myClass == "Runewarden") {
-                      myClass = nexusclient.datahandler().GMCP.CharStats[2];
-                   }
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
 
-		nexusclient.display_notice("Stop attacking!", "green");
-		nexusclient.datahandler().send_command("st none");
+		nexusclient.display_notice("|WANGBU| Stop attacking!", "green");
+		//nexusclient.datahandler().send_command("st none");
 		nexusclient.variables().set("bashing", false);
 		
 	}, // End stopattackThings()
@@ -188,10 +184,10 @@ const abash = {
 				if (enemyIndex !== -1) {
   					enemyList.splice(enemyIndex, 1);
 					abash.prioList[abash.currentArea] = enemyList;
-					nexusclient.display_notice("Enemy removed from prio list", "green");
+					nexusclient.display_notice("|WANGBU| Enemy removed from prio list", "green");
 				}
 			} else {
-				nexusclient.display_notice("Enemy not found in this area.", "red");
+				nexusclient.display_notice("|WANGBU| Enemy not found in this area.", "red");
 			}
 		} else {
 
