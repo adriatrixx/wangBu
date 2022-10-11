@@ -84,6 +84,7 @@ const abash = {
 		var enemyFound = false;
 		//nexusclient.display_notice("enemyFound = false", "yellow");
 		var myClass = nexusclient.datahandler().GMCP.Status.class;
+		nexusclient.display_notice(myClass, "yellow");
                    if(myClass == "Runewarden") {
                       myClass = nexusclient.datahandler().GMCP.CharStats[2];
                    }
