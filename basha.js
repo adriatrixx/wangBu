@@ -207,6 +207,7 @@ const abash = {
 					nexusclient.display_notice("-----------------", "white");
 					nexusclient.display_notice("abash show prios here - list prio denizens in current area", "white");
 					nexusclient.display_notice(" - click on red X to remove a denizen from the prio list", "white");
+					nexusclient.display_notice("abash del prios here - delete all prios in current area", "white");
 					break;
 				case "show prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
@@ -219,6 +220,18 @@ const abash = {
 					str += "<span style='color:white'>-----------------</span>\n";
 					nexusclient.add_html_line(str);
 					break;
+				case "del prios here":
+					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
+					var enemyList = abash.prioList[abash.currentArea];
+					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
+					str += "<span style='color:white'>-----------------</span>\n";
+					enemyList.forEach(function(el) {
+						abash.runCommand(\"remove prio " + el + "\")
+					});					
+					nexusclient.add_html_line(str);
+					nexusclient.display_notice("|WANGBU| Cleared prio list here", "yellow");
+					break;
+				
 				default:
 					nexusclient.display_notice("Command not recognized.", "white");
 			}
