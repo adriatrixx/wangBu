@@ -222,13 +222,7 @@ const abash = {
 					break;
 				case "del prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
-					var enemyList = abash.prioList[abash.currentArea];
-					var str = "<span style='color:white'>Area: " + abash.currentArea + "</span>\n";
-					str += "<span style='color:white'>-----------------</span>\n";
-					enemyList.forEach(function(el) {
-						abash.runCommand(\"remove prio " + el + "\")
-					});					
-					nexusclient.add_html_line(str);
+					abash.prioList[abash.currentArea] = [];
 					nexusclient.display_notice("|WANGBU| Cleared prio list here", "yellow");
 					break;
 				
