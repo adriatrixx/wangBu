@@ -203,7 +203,7 @@ const abash = {
 	                switch (command) {
 				
 				case "help":
-					nexusclient.display_notice("ABash Help", "white");
+					nexusclient.display_notice("Bash Help", "white");
 					nexusclient.display_notice("-----------------", "white");
 					nexusclient.display_notice("abash show prios here - list prio denizens in current area", "white");
 					nexusclient.display_notice(" - click on red X to remove a denizen from the prio list", "white");
