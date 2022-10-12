@@ -91,6 +91,8 @@ const abash = {
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
+		var tar = nexusclient.variables().get("tar");
+		//nexusclient.display_notice(bashing, "yellow");
 
 		//tempPrep = "";
 		//tempAttack = "tide clobber";
@@ -128,7 +130,7 @@ const abash = {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
-						//nexusclient.display_notice("Found an enemy!", "yellow");
+						nexusclient.display_notice("|WANGBU| target sighted!", "green");
 						nexusclient.datahandler().send_command("st " + el.id);
 					}
 				});
@@ -136,9 +138,16 @@ const abash = {
 		});
 
 		if (enemyFound == false) {
-			nexusclient.display_notice("|WANGBU| No enemies found", "green");
-			//nexusclient.datahandler().send_command("st none");
-			//nexusclient.variables().set("bashing", false);
+			if (tar) {
+				nexusclient.display_notice("|WANGBU| manual target", "yellow");
+				nexusclient.variables().set("bashing", true);
+				nexusclient.datahandler().send_command(tempPrep);
+				nexusclient.datahandler().send_command(tempAttack);
+			} else {
+				nexusclient.display_notice("|WANGBU| No targets found", "yellow");
+				//nexusclient.datahandler().send_command("st none");
+				nexusclient.variables().set("bashing", false);
+			}			
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempPrep);
