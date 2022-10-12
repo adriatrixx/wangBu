@@ -120,8 +120,8 @@ const abash = {
 				break;
                 }
    
-  		//nexusclient.variables().set("atkPrep", tempPrep);
-		//nexusclient.variables().set("atkCommand", tempAttack);
+  		nexusclient.variables().set("atkPrep", tempPrep);
+		nexusclient.variables().set("atkCommand", tempAttack);
 
 		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
