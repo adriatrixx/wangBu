@@ -93,9 +93,6 @@ const abash = {
 		var bashing = nexusclient.variables().get("bashing");
 		var tar = nexusclient.variables().get("tar");
 		//nexusclient.display_notice(bashing, "yellow");
-
-		//tempPrep = "";
-		//tempAttack = "tide clobber";
 		
 		switch (myClass) {
 			case "Tidesage":
