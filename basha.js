@@ -39,7 +39,7 @@ const abash = {
 				var denizenList = abash.prioList[abash.currentArea];
 				console.log(denizenList);
 				if(!denizenList.includes(slainDenizen)) {
-					nexusclient.display_notice("|WANGBU| New denizen added", "green");
+					nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 					denizenList.push(slainDenizen);
 					abash.prioList[abash.currentArea] = denizenList;
 					nexusclient.variables().set("basharrrPrioList", abash.prioList);
@@ -51,8 +51,8 @@ const abash = {
 				abash.prioList[abash.currentArea] = denizenList;
 				console.log(abash.prioList);
 				nexusclient.variables().set("basharrrPrioList", abash.prioList);
-				nexusclient.display_notice("|WANGBU| New area added", "green");
-				nexusclient.display_notice("|WANGBU| New denizen added", "green");
+				nexusclient.display_notice("|WANGBU| New area added", "yellow");
+				nexusclient.display_notice("|WANGBU| New denizen added", "yellow");
 			}
 
 			abash.attackThings();
@@ -76,7 +76,7 @@ const abash = {
 	}, // End startUp()
 	
 	attackThings() {
-		// nexusclient.display_notice("Running attackThings function!", "green");
+		// nexusclient.display_notice("Running attackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		abash.prioList = nexusclient.variables().get("basharrrPrioList");
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
@@ -122,30 +122,29 @@ const abash = {
   		nexusclient.variables().set("atkPrep", tempPrep);
 		nexusclient.variables().set("atkCommand", tempAttack);
 
-		
-		if (!tar) {
-			roomItems.forEach(function(el) {
+		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
 				enemyList.forEach(function(el2) {
 					if(el.name == el2) {
 						enemyFound = true;
 						nexusclient.display_notice("|WANGBU| target sighted!", "green");
 						nexusclient.datahandler().send_command("st " + el.id);
-						}
-					});
-				}
-			});
-		} else {
-			nexusclient.display_notice("|WANGBU| manual target", "green");
-			nexusclient.variables().set("bashing", true);
-			nexusclient.datahandler().send_command(tempPrep);
-			nexusclient.datahandler().send_command(tempAttack);	
-		}
+					}
+				});
+			}
+		});
 
 		if (enemyFound == false) {
-			nexusclient.display_notice("|WANGBU| No targets found", "green");
-			//nexusclient.datahandler().send_command("st none");
-			nexusclient.variables().set("bashing", false);
+			if (tar) {
+				nexusclient.display_notice("|WANGBU| manual target", "yellow");
+				nexusclient.variables().set("bashing", true);
+				nexusclient.datahandler().send_command(tempPrep);
+				nexusclient.datahandler().send_command(tempAttack);
+			} else {
+				nexusclient.display_notice("|WANGBU| No targets found", "yellow");
+				//nexusclient.datahandler().send_command("st none");
+				nexusclient.variables().set("bashing", false);
+			}			
 		} else if (bashing == false) {
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempPrep);
@@ -154,13 +153,13 @@ const abash = {
 	}, // End attackThings()
 
 	stopattackThings() {
-		// nexusclient.display_notice("Running stopattackThings function!", "green");
+		// nexusclient.display_notice("Running stopattackThings function!", "yellow");
 		var roomItems = nexusclient.datahandler().GMCP.Items.room;
 		abash.prioList = nexusclient.variables().get("basharrrPrioList");
 		abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 		var enemyList = abash.prioList[abash.currentArea];
 		var enemyFound = false;
-		// nexusclient.display_notice("enemyFound = false", "green");
+		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var tempPrep = "";
 		var tempAttack = "";
 		var bashing = nexusclient.variables().get("bashing");
@@ -221,7 +220,7 @@ const abash = {
 				case "del prios here":
 					abash.currentArea = nexusclient.datahandler().GMCP.Location.areaname;
 					abash.prioList[abash.currentArea] = [];
-					nexusclient.display_notice("|WANGBU| Cleared prio list here", "white");
+					nexusclient.display_notice("|WANGBU| Cleared prio list here", "yellow");
 					break;
 				
 				default:
