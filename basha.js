@@ -1,6 +1,6 @@
 const abash = {
 	startUp() {
-		console.log("wangBu loaded successfully");
+		console.log("wangBu loaded successfully ver 1.0");
 		
 		// declare namespace variables
 		var currentArea = "";
