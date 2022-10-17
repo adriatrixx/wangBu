@@ -90,6 +90,7 @@ const abash = {
                 //   }
 		var tempPrep = "";
 		var tempAttack = "";
+		var tempFollow = "";
 		var bashing = nexusclient.variables().get("bashing");
 		var tar = nexusclient.variables().get("tar");
 		//nexusclient.display_notice(bashing, "yellow");
@@ -98,6 +99,7 @@ const abash = {
 			case "Tidesage":
 				tempPrep = "tide hightide";
 				tempAttack = "tide clobber";
+				tempFollow = "synth recuperate";
 				break;
 		//	case "Red Dragon":
 		//		tempAttack = "gut";
@@ -121,6 +123,7 @@ const abash = {
    
   		nexusclient.variables().set("atkPrep", tempPrep);
 		nexusclient.variables().set("atkCommand", tempAttack);
+		nexusclient.variables().set("atkFollow", tempFollow);
 
 		roomItems.forEach(function(el) {
 			if(enemyList && enemyFound == false) {
@@ -140,6 +143,7 @@ const abash = {
 				nexusclient.variables().set("bashing", true);
 				nexusclient.datahandler().send_command(tempPrep);
 				nexusclient.datahandler().send_command(tempAttack);
+				nexusclient.datahandler().send_command(tempFollow);
 			} else {
 				nexusclient.display_notice("|WANGBU| No targets found", "yellow");
 				//nexusclient.datahandler().send_command("st none");
@@ -149,6 +153,7 @@ const abash = {
 			nexusclient.variables().set("bashing", true);
 			nexusclient.datahandler().send_command(tempPrep);
 			nexusclient.datahandler().send_command(tempAttack);
+			nexusclient.datahandler().send_command(tempFollow);
 		}
 	}, // End attackThings()
 
@@ -162,6 +167,7 @@ const abash = {
 		// nexusclient.display_notice("enemyFound = false", "yellow");
 		var tempPrep = "";
 		var tempAttack = "";
+		var tempFollow = "";
 		var bashing = nexusclient.variables().get("bashing");
 
 		nexusclient.display_notice("|WANGBU| Stop attacking!", "green");
